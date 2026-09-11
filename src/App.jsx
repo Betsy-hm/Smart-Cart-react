@@ -7,9 +7,8 @@ import logo from './assets/img/logo.png';
 const Header = () => (
   <header className="header">
     <img src={logo} alt="SmartCart" className="header-logo" />
-    <h1 className="header-titulo">SmartCart</h1>
     <p className="header-descricao">
-      Uma solução robusta de checkout para e-commerce, com gestão completa de carrinho, processamento de pagamentos e fluxos de confirmação intuitivos
+      Aplicação React para simulação de checkout e pagamento.
     </p>
   </header>
 );
