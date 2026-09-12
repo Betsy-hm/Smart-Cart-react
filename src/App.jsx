@@ -18,13 +18,15 @@ const Stepper = () => {
   const path = location.pathname;
 
   const steps = [
-    { path: '/', label: 'Carrinho', icon: '1' },
-    { path: '/pagamento', label: 'Pagamento', icon: '2' },
-    { path: '/sucesso', label: 'Sucesso', icon: '3' },
-    { path: '/falha', label: 'Falha', icon: '4' }
-  ];
+  { path: '/', label: 'Carrinho', icon: '1' },
+  { path: '/pagamento', label: 'Pagamento', icon: '2' },
+  { path: '/resultado', label: 'Resultado', icon: '3' }
+];
 
-  const currentIndex = steps.findIndex((s) => s.path === path);
+  const currentIndex =
+  path === '/sucesso' || path === '/falha'
+    ? 2
+    : steps.findIndex((s) => s.path === path);
 
   return (
     <div className="stepper">
