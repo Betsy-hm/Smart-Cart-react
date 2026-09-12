@@ -33,7 +33,7 @@ body {
 }
 
 /* ========================================
-   LAYOUT BASE
+   LAYOUT BASE - MOBILE FIRST
    ======================================== */
 
 .app-container {
@@ -44,10 +44,8 @@ body {
 
 .main-content {
   flex: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
   width: 100%;
+  padding: 1rem;
 }
 
 /* ========================================
@@ -58,11 +56,13 @@ body {
   background: var(--azul-escuro);
   padding: 1.5rem 2rem;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
+  text-align: center;
 }
 
- .header-logo {
+.header-logo {
   width: 360px;
   height: auto;
   max-width: 100%;
@@ -74,6 +74,7 @@ body {
   color: var(--branco);
   font-size: 1.8rem;
   font-weight: 600;
+  text-align: center;
 }
 
 /* ========================================
@@ -87,11 +88,11 @@ body {
 }
 
 .stepper-container {
-  max-width: 1200px;
-  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
+  overflow-x: auto;
 }
 
 .stepper-item {
@@ -126,7 +127,7 @@ body {
 }
 
 .stepper-label {
-  font-size: 0.85rem;
+  font-size: 0.75rem;
   color: var(--cinza-texto);
   font-weight: 500;
 }
@@ -161,7 +162,7 @@ body {
 
 .carrinho-content {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   align-items: start;
 }
@@ -225,7 +226,7 @@ body {
 }
 
 .resumo-total {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 800;
 }
 
@@ -235,7 +236,7 @@ body {
 
 .pagamento-content {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr;
   gap: 2rem;
   align-items: start;
 }
@@ -246,8 +247,7 @@ body {
   padding: 2rem;
   border-radius: 12px;
   text-align: center;
-  position: sticky;
-  top: 2rem;
+  position: static;
 }
 
 .total-label {
@@ -259,7 +259,7 @@ body {
 }
 
 .total-valor {
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 800;
 }
 
@@ -288,17 +288,21 @@ body {
   border: 2px solid var(--cinza-borda);
   border-radius: 8px;
   font-size: 1rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
 
 .form-group input:focus {
-  outline: none;
+  outline: 3px solid rgba(0, 180, 216, 0.25);
   border-color: var(--ciano);
+}
+
+.form-group input[aria-invalid='true'] {
+  border-color: var(--vermelho-erro);
 }
 
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 1rem;
 }
 
@@ -370,6 +374,13 @@ body {
   color: var(--branco);
 }
 
+.btn-finalizar:focus-visible,
+.btn-pagar:focus-visible,
+.btn-voltar:focus-visible {
+  outline: 3px solid var(--ciano);
+  outline-offset: 3px;
+}
+
 /* ========================================
    SUCESSO E FALHA
    ======================================== */
@@ -433,49 +444,56 @@ body {
 }
 
 /* ========================================
-   RESPONSIVIDADE
+   TABLET E DESKTOP
    ======================================== */
 
-@media (max-width: 768px) {
+@media (min-width: 769px) {
+  .main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
   .header {
-    flex-direction: column;
-    text-align: center;
-    gap: 0.5rem;
-  }
-
-  .header-descricao {
-    margin-left: 0;
-    text-align: center;
-  }
-
-  .stepper-container {
-    overflow-x: auto;
+    flex-direction: row;
+    text-align: left;
     gap: 1rem;
   }
 
-  .stepper-label {
-    font-size: 0.75rem;
+  .header-descricao {
+    text-align: left;
   }
 
-  .carrinho-content,
+  .stepper-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow-x: visible;
+    gap: 0;
+  }
+
+  .stepper-label {
+    font-size: 0.85rem;
+  }
+
+  .carrinho-content {
+    grid-template-columns: 2fr 1fr;
+  }
+
   .pagamento-content {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 2fr;
   }
 
   .pagamento-total {
-    position: static;
+    position: sticky;
+    top: 2rem;
   }
 
   .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .main-content {
-    padding: 1rem;
+    grid-template-columns: 1fr 1fr;
   }
 
   .resumo-total,
   .total-valor {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 }
