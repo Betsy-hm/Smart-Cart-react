@@ -64,6 +64,7 @@ const Pagamento = () => {
               id="titular"
               type="text"
               placeholder="Como está impresso no cartão"
+              autoComplete="cc-name"
               {...register('titular')}
               disabled={isProcessando}
               aria-invalid={errors.titular ? 'true' : 'false'}
@@ -89,6 +90,9 @@ const Pagamento = () => {
               id="cartao"
               type="text"
               placeholder="0000 0000 0000 0000"
+              inputMode="numeric"
+              autoComplete="cc-number"
+              maxLength={19}
               {...register('cartao')}
               disabled={isProcessando}
               aria-invalid={errors.cartao ? 'true' : 'false'}
@@ -115,6 +119,9 @@ const Pagamento = () => {
                 id="validade"
                 type="text"
                 placeholder="MM/AA"
+                inputMode="numeric"
+                autoComplete="cc-exp"
+                maxLength={5}
                 {...register('validade')}
                 disabled={isProcessando}
                 aria-invalid={errors.validade ? 'true' : 'false'}
@@ -140,6 +147,9 @@ const Pagamento = () => {
                 id="cvv"
                 type="text"
                 placeholder="123"
+                inputMode="numeric"
+                autoComplete="cc-csc"
+                maxLength={3}
                 {...register('cvv')}
                 disabled={isProcessando}
                 aria-invalid={errors.cvv ? 'true' : 'false'}
@@ -161,7 +171,11 @@ const Pagamento = () => {
           </div>
 
           {isProcessando && (
-            <p className="loading-message" aria-live="polite">
+            <p
+              className="loading-message"
+              aria-live="polite"
+              role="status"
+            >
               Processando compra...
             </p>
           )}
