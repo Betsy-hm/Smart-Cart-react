@@ -44,7 +44,7 @@ const Pagamento = () => {
       <div className="page-header">
         <h1>Pagamento</h1>
         <p className="page-subtitle">
-          Preencha os dados fictícios do cartão
+          Preencha os dados do cartão
         </p>
       </div>
 
@@ -66,10 +66,18 @@ const Pagamento = () => {
               placeholder="Como está impresso no cartão"
               {...register('titular')}
               disabled={isProcessando}
+              aria-invalid={errors.titular ? 'true' : 'false'}
+              aria-describedby={
+                errors.titular ? 'erro-titular' : undefined
+              }
             />
 
             {errors.titular && (
-              <span className="error-message">
+              <span
+                id="erro-titular"
+                className="error-message"
+                role="alert"
+              >
                 {errors.titular.message}
               </span>
             )}
@@ -83,10 +91,18 @@ const Pagamento = () => {
               placeholder="0000 0000 0000 0000"
               {...register('cartao')}
               disabled={isProcessando}
+              aria-invalid={errors.cartao ? 'true' : 'false'}
+              aria-describedby={
+                errors.cartao ? 'erro-cartao' : undefined
+              }
             />
 
             {errors.cartao && (
-              <span className="error-message">
+              <span
+                id="erro-cartao"
+                className="error-message"
+                role="alert"
+              >
                 {errors.cartao.message}
               </span>
             )}
@@ -101,10 +117,18 @@ const Pagamento = () => {
                 placeholder="MM/AA"
                 {...register('validade')}
                 disabled={isProcessando}
+                aria-invalid={errors.validade ? 'true' : 'false'}
+                aria-describedby={
+                  errors.validade ? 'erro-validade' : undefined
+                }
               />
 
               {errors.validade && (
-                <span className="error-message">
+                <span
+                  id="erro-validade"
+                  className="error-message"
+                  role="alert"
+                >
                   {errors.validade.message}
                 </span>
               )}
@@ -118,10 +142,18 @@ const Pagamento = () => {
                 placeholder="123"
                 {...register('cvv')}
                 disabled={isProcessando}
+                aria-invalid={errors.cvv ? 'true' : 'false'}
+                aria-describedby={
+                  errors.cvv ? 'erro-cvv' : undefined
+                }
               />
 
               {errors.cvv && (
-                <span className="error-message">
+                <span
+                  id="erro-cvv"
+                  className="error-message"
+                  role="alert"
+                >
                   {errors.cvv.message}
                 </span>
               )}
