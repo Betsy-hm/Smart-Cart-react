@@ -9,7 +9,7 @@ export const usePagamento = () => {
   const processarCompra = async (dadosCartao) => {
     setIsProcessando(true);
 
-    // RF08: Simula operação assíncrona de 2 segundos
+    // Simula operação assíncrona de 2 segundos
     await new Promise((resolve) => setTimeout(resolve, 2000));
 
     const numeroLimpo = dadosCartao.cartao.replace(/\D/g, '');
@@ -17,7 +17,7 @@ export const usePagamento = () => {
 
     setIsProcessando(false);
 
-    // RF09: Navegação condicional
+    // Navegação condicional
     if (isGolpe) {
       navigate('/falha');
     } else {
